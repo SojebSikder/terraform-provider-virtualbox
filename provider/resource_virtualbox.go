@@ -118,5 +118,30 @@ func (r *VirtualBoxVMResource) Update(ctx context.Context, req resource.UpdateRe
 }
 
 func (r *VirtualBoxVMResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	// Implementation for deleting the resource
+	var data VirtualBoxVMResourceData
+
+	// Decode the current state into the struct
+	diags := req.State.Get(ctx, &data)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	name := data.Name.ValueString()
+
+	// Power off the VM if running
+	cmd := exec.Command("VBoxManage", "controlvm", name, "poweroff")
+	if err := cmd.Run(); err != nil {
+		resp.Diagnostics.AddWarning("VM Power Off Failed", fmt.Sprintf("Could not power off VM '%s'. It may not be running.", name))
+	}
+
+	// Unregister and delete the VM
+	cmd = exec.Command("VBoxManage", "unregistervm", name, "--delete")
+	if err := cmd.Run(); err != nil {
+		resp.Diagnostics.AddError("Error deleting VM", fmt.Sprintf("Failed to delete VM '%s': %s", name, err))
+		return
+	}
+
+	// Terraform removes the resource from state automatically after this function completes
+	resp.Diagnostics.AddWarning("VM Deleted", fmt.Sprintf("VM '%s' has been successfully deleted.", name))
 }
