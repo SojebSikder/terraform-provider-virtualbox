@@ -13,25 +13,30 @@ func New() provider.Provider {
 	return &VirtualBoxProvider{}
 }
 
-type VirtualBoxProvider struct{}
+type VirtualBoxProvider struct {
+	version string
+}
 
 // Configure implements provider.Provider.
 func (p *VirtualBoxProvider) Configure(context.Context, provider.ConfigureRequest, *provider.ConfigureResponse) {
-	panic("unimplemented")
+
 }
 
 // DataSources implements provider.Provider.
 func (p *VirtualBoxProvider) DataSources(context.Context) []func() datasource.DataSource {
-	panic("unimplemented")
+	return nil
 }
 
 // Resources implements provider.Provider.
 func (p *VirtualBoxProvider) Resources(context.Context) []func() resource.Resource {
-	panic("unimplemented")
+	return []func() resource.Resource{
+		NewVirtualBoxVMResource, // Register the VirtualBox VM resource
+	}
 }
 
 func (p *VirtualBoxProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
 	resp.TypeName = "virtualbox"
+	resp.Version = p.version
 }
 
 func (p *VirtualBoxProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     virtualbox = {
       source = "hashicorp.com/edu/virtualbox"
-      version = "0.1.0"
+      version = "0.0.1"
     }
   }
 }
