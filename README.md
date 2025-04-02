@@ -38,13 +38,13 @@ go build -o terraform-provider-virtualbox
 ```
 
 ## Run (Locally)
-Create file named `terraform.rc` in this directory `C:\Users\sojeb\AppData\Roaming`
+Create file named `terraform.rc` in this directory `C:\Users\USER\AppData\Roaming`
 
 ```bash
 provider_installation {
 
   dev_overrides {
-      "hashicorp.com/edu/virtualbox" = "C:/Users/sojeb/go/bin"
+      "hashicorp.com/edu/virtualbox" = "C:/Users/USER/go/bin"
       }
 
   # For all other providers, install them directly from their origin provider
@@ -59,7 +59,7 @@ Run
 go install .
 ```
 
-Executable file will be saved on `C:/Users/sojeb/go/bin`
+Executable file will be saved on `C:/Users/USER/go/bin`
 
 Create `main.tf` at `examples/provider-install-verification` in project root directory
 
