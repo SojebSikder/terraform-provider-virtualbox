@@ -37,15 +37,15 @@ terraform apply
 go build -o terraform-provider-virtualbox
 ```
 
-## Run (Locally)
+## Run (For development)
 Create file named `terraform.rc` in this directory `C:\Users\USER\AppData\Roaming`
 
 ```bash
 provider_installation {
 
   dev_overrides {
-      "hashicorp.com/edu/virtualbox" = "C:/Users/USER/go/bin"
-      }
+    "hashicorp.com/edu/virtualbox" = "C:/Users/USER/go/bin"
+  }
 
   # For all other providers, install them directly from their origin provider
   # registries as normal. If you omit this, Terraform will _only_ use
