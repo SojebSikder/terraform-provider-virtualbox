@@ -25,12 +25,45 @@ resource "virtualbox_vm" "ubuntu" {
 ```
 
 Run terraform
+
 ```bash
 terraform init
 terraform apply
 ```
 
 ## Build
+
 ```bash
 go build -o terraform-provider-virtualbox
+```
+
+## Run (Locally)
+Create file named `terraform.rc` in this directory `C:\Users\sojeb\AppData\Roaming`
+
+```bash
+provider_installation {
+
+  dev_overrides {
+      "hashicorp.com/edu/virtualbox" = "C:/Users/sojeb/go/bin"
+      }
+
+  # For all other providers, install them directly from their origin provider
+  # registries as normal. If you omit this, Terraform will _only_ use
+  # the dev_overrides block, and so no other providers will be available.
+  direct {}
+}
+```
+
+Run
+```
+go install .
+```
+
+Executable file will be saved on `C:/Users/sojeb/go/bin`
+
+Create `main.tf` at `examples/provider-install-verification` in project root directory
+
+to test the `main.tf` go to `examples/provider-install-verification` then run
+```
+terraform plan
 ```

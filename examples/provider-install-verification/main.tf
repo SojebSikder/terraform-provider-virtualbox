@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     virtualbox = {
-      source = "sojebsikder/virtualbox"
+      source = "hashicorp.com/edu/virtualbox"
       version = "0.1.0"
     }
   }

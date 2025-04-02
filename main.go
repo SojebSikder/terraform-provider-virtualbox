@@ -9,6 +9,7 @@ import (
 
 func main() {
 	providerserver.Serve(context.Background(), provider.New, providerserver.ServeOpts{
-		Address: "registry.terraform.io/sojebsikder/virtualbox",
+		// Address: "registry.terraform.io/sojebsikder/virtualbox",
+		Address: "hashicorp.com/edu/virtualbox",
 	})
 }
