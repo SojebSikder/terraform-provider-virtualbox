@@ -30,7 +30,7 @@ func (p *VirtualBoxProvider) DataSources(context.Context) []func() datasource.Da
 // Resources implements provider.Provider.
 func (p *VirtualBoxProvider) Resources(context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
-		NewVirtualBoxVMResource, // Register the VirtualBox VM resource
+		NewVirtualBoxVMResource,
 	}
 }
 
@@ -46,7 +46,6 @@ func (p *VirtualBoxProvider) Schema(_ context.Context, _ provider.SchemaRequest,
 			"vboxmanage_path": schema.StringAttribute{
 				Optional:    true,
 				Description: "Path to the VBoxManage executable.",
-				// Default:     "/usr/bin/VBoxManage",
 			},
 		},
 	}

@@ -10,8 +10,8 @@ terraform {
 provider "virtualbox" {}
 
 resource "virtualbox_vm" "ubuntu" {
-  name     = "UbuntuServer"
-  iso_path = "/path/to/ubuntu-server.iso"
+  name     = "UbuntuServerTest"
+  iso_path = "D:/All Programs/Software/OS/ubuntu-24.04.2-live-server-amd64.iso"
   memory   = 2048
   cpus     = 2
 }
